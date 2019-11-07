@@ -17,13 +17,11 @@ jobs:
         echo test, and deploy your project.
     - name: Install rbenv & ruby-build
       run: |
-        git clone https://github.com/rbenv/rbenv.git ~/.rbenv 2>&1 \
-        && cd ~/.rbenv \
-        && src/configure \
-        && make -C src \
-        && bash -c "echo -e '\nif [ -d \"\$HOME/.rbenv/bin\" ] ; then\n    PATH=\"\$HOME/.rbenv/bin:\$PATH\"\nfi\n'" >> ~/.profile \
-        && bash -c "echo -e 'eval \"\$(rbenv init -)\"\n\'" >> ~/.profile \
-        && mkdir -p ~/.rbenv/plugins \
-        && git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build        
-    - name: Install ruby
-      run: rbenv install 2.6.5
+        apt-get update \
+        apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev \
+        && git clone https://github.com/rbenv/ruby-build.git /tmp/ruby-build \
+        && PREFIX=/usr/local /tmp/ruby-build/install.sh \
+        && ruby-build 2.2.0 /tmp/artifacts \
+        && ls -la /tmp/artifacts
+    - name: env
+      run: env
