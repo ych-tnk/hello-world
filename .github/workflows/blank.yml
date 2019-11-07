@@ -17,11 +17,22 @@ jobs:
         echo test, and deploy your project.
     - name: Install rbenv & ruby-build
       run: |
-        sudo apt-get update \
-        && sudo apt-get -y install autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev zlib1g-dev libncurses5-dev libffi-dev libgdbm5 libgdbm-dev \
-        && git clone https://github.com/rbenv/ruby-build.git /tmp/ruby-build \
-        && PREFIX=/usr/local /tmp/ruby-build/install.sh \
-        && ruby-build 2.2.0 /tmp/artifacts \
-        && ls -la /tmp/artifacts
+        sudo apt-get update
+        sudo apt-get -y install \
+            autoconf \
+            bison \
+            build-essential \
+            libssl-dev \
+            libyaml-dev \
+            libreadline6-dev \
+            zlib1g-dev \
+            libncurses5-dev \
+            libffi-dev \
+            libgdbm5 \
+            libgdbm-dev
+        git clone https://github.com/rbenv/ruby-build.git /tmp/ruby-build
+        PREFIX=/usr/local /tmp/ruby-build/install.sh
+        ruby-build 2.2.0 /tmp/artifacts
+        ls -la /tmp/artifacts
     - name: env
       run: env
