@@ -15,3 +15,11 @@ jobs:
       run: |
         echo Add other actions to build,
         echo test, and deploy your project.
+    - name: Install rbenv
+      run: |
+        git clone https://github.com/rbenv/rbenv.git ~/.rbenv 2>&1 \
+        && cd ~/.rbenv \
+        && src/configure \
+        && make -C src \
+        && bash -c "echo -e '\nif [ -d \"\$HOME/.rbenv/bin\" ] ; then\n    PATH=\"\$HOME/.rbenv/bin:\$PATH\"\nfi\n'" >> ~/.profile \
+        && bash -c "echo -e 'eval \"\$(rbenv init -)\"\n\'" >> /home/circleci/.profile
