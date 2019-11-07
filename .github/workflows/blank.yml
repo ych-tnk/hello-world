@@ -31,7 +31,7 @@ jobs:
             libgdbm5 \
             libgdbm-dev
         git clone https://github.com/rbenv/ruby-build.git /tmp/ruby-build
-        PREFIX=/usr/local /tmp/ruby-build/install.sh
+        sudo PREFIX=/usr/local /tmp/ruby-build/install.sh
         ruby-build 2.2.0 /tmp/artifacts
         ls -la /tmp/artifacts
     - name: env
