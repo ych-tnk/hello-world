@@ -9,12 +9,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello, world!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    - name: env
+      run: env
     - name: Install rbenv & ruby-build
       run: |
         sudo apt-get update
@@ -32,7 +28,5 @@ jobs:
             libgdbm-dev
         git clone https://github.com/rbenv/ruby-build.git /tmp/ruby-build
         sudo PREFIX=/usr/local /tmp/ruby-build/install.sh
-        ruby-build 2.2.0 /tmp/artifacts
+        ruby-build 2.6.5 /tmp/artifacts
         ls -la /tmp/artifacts
-    - name: env
-      run: env
